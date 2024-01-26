@@ -116,7 +116,7 @@ void board_playTurn() {
             case PROPERTY:
             case UTILITY:
                 {
-                    money rentDue = currentTile.type == PROPERTY ? currentTile.rent :
+                    money rentDue = currentTile.type == PROPERTY ? currentTile.currentRent :
                                     ( roll1 + roll2 ) * 4;
                     if ( currentTile.isOwned && !currentTile.isMortgaged &&
                          currentTile.ownerIndex != board.currentPlayerIndex ) {
@@ -131,10 +131,10 @@ void board_playTurn() {
                     break;
                 }
             case TAX:
-                if ( currentTile.rent > currentPlayer.cash ) {
+                if ( currentTile.currentRent > currentPlayer.cash ) {
                     //check for mortgages
                 }
-                currentPlayer.cash -= currentTile.rent;
+                currentPlayer.cash -= currentTile.currentRent;
                 break;
             case CHANCE:
                 break;

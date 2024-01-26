@@ -22,7 +22,8 @@ enum PropType {
 struct Tile {
     char *name;
     money cost;
-    money rent;
+    money startingRent;
+    money currentRent;
     money mortgageValue;
     enum PropType type;
     uint8_t group;
