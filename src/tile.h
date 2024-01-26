@@ -27,6 +27,7 @@ struct Tile {
     uint8_t group;
     bool isMortgaged;
     uint8_t ownerIndex;
+    bool isOwned;
 };
 
 #endif
