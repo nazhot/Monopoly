@@ -29,7 +29,7 @@ static struct Board board;
 bool initialized = false;
 
 //Code from https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c
-int rollDie( const uint8_t die ) {
+static uint8_t rollDie( const uint8_t die ) {
     if ((die - 1) == RAND_MAX) {
         return rand();
     } else {
@@ -93,8 +93,11 @@ void board_addTile( char *tileName, const money cost,
 void board_playTurn() {
     struct Player currentPlayer = board.players[board.currentPlayerIndex];
     for ( int i = 0; i < 3; ++i ) {
-        int roll1 = rollDie( 6 ); 
-        int roll2 = rollDie( 6 );
+        uint8_t spacesToGo = board.goIndex > currentPlayer.boardIndex ?
+                             board.goIndex - currentPlayer.boardIndex :
+                             board.numTiles - currentPlayer.boardIndex + board.goIndex;
+        uint8_t roll1 = rollDie( 6 ); 
+        uint8_t roll2 = rollDie( 6 );
         if ( i == 2 && roll1 == roll2 ) {
             currentPlayer.boardIndex = board.jailIndex;
             currentPlayer.inJail = true;
@@ -103,6 +106,9 @@ void board_playTurn() {
         //move player
         currentPlayer.boardIndex += roll1 + roll2;
         currentPlayer.boardIndex %= board.numTiles;
+        if ( roll1 + roll2 >= spacesToGo ) {
+            currentPlayer.cash += board.passGoAmount;
+        }
 
         //check Tile landed on
         switch( board.tiles[currentPlayer.boardIndex].type ) {
