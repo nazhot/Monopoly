@@ -130,8 +130,11 @@ void board_playTurn() {
                     }
                     break;
                 }
-                break;
             case TAX:
+                if ( currentTile.rent > currentPlayer.cash ) {
+                    //check for mortgages
+                }
+                currentPlayer.cash -= currentTile.rent;
                 break;
             case CHANCE:
                 break;
