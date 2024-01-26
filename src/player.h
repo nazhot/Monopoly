@@ -8,8 +8,8 @@
 struct Player {
     money cash;
     uint8_t boardIndex;
-    uint8_t numDoubles;
     bool inJail;
+    uint8_t turnsInJail;
 };
 
 #endif

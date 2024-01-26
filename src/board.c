@@ -1,5 +1,6 @@
 #include "board.h"
 #include "player.h"
+#include "tile.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -90,13 +91,36 @@ void board_addTile( char *tileName, const money cost,
 
 void board_playTurn() {
     struct Player currentPlayer = board.players[board.currentPlayerIndex];
-    int roll1 = rollDie( 6 ); 
-    int roll2 = rollDie( 6 );
-    do {
+    for ( int i = 0; i < 3; ++i ) {
+        int roll1 = rollDie( 6 ); 
+        int roll2 = rollDie( 6 );
+        if ( i == 2 && roll1 == roll2 ) {
+            currentPlayer.boardIndex = board.jailIndex;
+            currentPlayer.inJail = true;
+            break;
+        }
+        //move player
         currentPlayer.boardIndex += roll1 + roll2;
         currentPlayer.boardIndex %= board.numTiles;
-        currentPlayer.numDoubles++;
-    } while ( roll1 == roll2 && currentPlayer.numDoubles < 3);
 
+        //check Tile landed on
+        switch( board.tiles[currentPlayer.boardIndex].type ) {
+            case PROPERTY:
+                break;
+            case UTILITY:
+                break;
+            case TAX:
+                break;
+            case CHANCE:
+                break;
+            case COMMUNITY_CHEST:
+                break;
+            default:
+                break;
+        }
 
+        if ( roll1 != roll2 ) {
+            break;
+        }
+    }
 }
