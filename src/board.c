@@ -65,6 +65,17 @@ void board_addTile( char *tileName, const money cost,
                     const money mortgage, const enum PropType type,
                     const uint8_t group ) {
     assert( initialized && board.numTiles < 255 );
+    assert( !( board.goAdded && type == GO ) );
+    assert( !( board.jailAdded && type == JAIL ) );
+
+    if ( type == JAIL ) {
+        board.jailAdded = true;
+        board.jailIndex = board.numTiles;
+    }
+    if ( type == GO ) {
+        board.goAdded = true;
+        board.goIndex = board.numTiles;
+    }
     board.tiles[board.numTiles++] = ( struct Tile ) {
                                                         .name = tileName,
                                                         .cost = cost,
