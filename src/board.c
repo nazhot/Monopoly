@@ -22,6 +22,7 @@ struct Board {
     bool goAdded;
     uint8_t jailIndex;
     bool jailAdded;
+    money passGoAmount;
 };
 
 static struct Board board;
@@ -57,10 +58,10 @@ void board_initialize( const uint8_t numPlayers ) {
                                                 .cash = 1500,
                                                 .boardIndex = 0,
                                                 .inJail = false,
-                                                .numDoubles = 0,
                                               };
     }
-    board.numPlayers = 4;
+    board.numPlayers = numPlayers;
+    board.passGoAmount = 200;
 }
 void board_addTile( char *tileName, const money cost,
                     const money mortgage, const enum PropType type,
