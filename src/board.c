@@ -114,16 +114,22 @@ void board_playTurn() {
         struct Tile currentTile = board.tiles[currentPlayer.boardIndex];
         switch( currentTile.type ) {
             case PROPERTY:
-                if ( currentTile.isOwned && !currentTile.isMortgaged &&
-                     currentTile.ownerIndex != board.currentPlayerIndex ) {
-                   if( currentTile.rent > currentPlayer.cash ) {
-                        //try to mortgage
-                    }
-                    currentPlayer.cash -= currentTile.rent;
-                    board.players[currentTile.ownerIndex].cash += currentTile.rent;
-                }
-                break;
             case UTILITY:
+                {
+                    money rentDue = currentTile.type == PROPERTY ? currentTile.rent :
+                                    ( roll1 + roll2 ) * 4;
+                    if ( currentTile.isOwned && !currentTile.isMortgaged &&
+                         currentTile.ownerIndex != board.currentPlayerIndex ) {
+                        if( rentDue > currentPlayer.cash ) {
+                            //try to mortgage
+                        }
+                        currentPlayer.cash -= rentDue;
+                        board.players[currentTile.ownerIndex].cash += rentDue;
+                    } else if ( !currentTile.isOwned ) {
+                        //check if player wants to buy, attempt to buy
+                    }
+                    break;
+                }
                 break;
             case TAX:
                 break;
