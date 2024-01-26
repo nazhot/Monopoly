@@ -26,6 +26,7 @@ struct Tile {
     enum PropType type;
     uint8_t group;
     bool isMortgaged;
+    uint8_t ownerIndex;
 };
 
 #endif
