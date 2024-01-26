@@ -111,8 +111,17 @@ void board_playTurn() {
         }
 
         //check Tile landed on
-        switch( board.tiles[currentPlayer.boardIndex].type ) {
+        struct Tile currentTile = board.tiles[currentPlayer.boardIndex];
+        switch( currentTile.type ) {
             case PROPERTY:
+                if ( currentTile.isOwned && !currentTile.isMortgaged &&
+                     currentTile.ownerIndex != board.currentPlayerIndex ) {
+                   if( currentTile.rent > currentPlayer.cash ) {
+                        //try to mortgage
+                    }
+                    currentPlayer.cash -= currentTile.rent;
+                    board.players[currentTile.ownerIndex].cash += currentTile.rent;
+                }
                 break;
             case UTILITY:
                 break;

@@ -22,12 +22,15 @@ enum PropType {
 struct Tile {
     char *name;
     money cost;
+    money rent;
     money mortgageValue;
     enum PropType type;
     uint8_t group;
     bool isMortgaged;
     uint8_t ownerIndex;
     bool isOwned;
+    uint8_t numHouses;
+    uint8_t numHotels;
 };
 
 #endif
