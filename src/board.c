@@ -86,7 +86,8 @@ void board_addTile( char *tileName, const money cost,
                                                         .group = group,
                                                         .isMortgaged = false,
                                                         .isOwned = false,
-                                                        .ownerIndex = 0
+                                                        .ownerIndex = 0,
+                                                        .buildingCost = 0
                                                       };
 }
 

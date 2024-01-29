@@ -12,4 +12,7 @@ struct Player {
     uint8_t turnsInJail;
 };
 
+bool player_buyProperty( struct Player *player, struct Tile *property ); 
+bool player_mortgageProperty( struct Player *player, struct Tile *property );
+
 #endif

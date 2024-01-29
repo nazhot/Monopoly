@@ -24,6 +24,7 @@ struct Tile {
     money cost;
     money startingRent;
     money currentRent;
+    money buildingCost;
     money mortgageValue;
     enum PropType type;
     uint8_t group;
