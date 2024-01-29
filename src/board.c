@@ -92,13 +92,18 @@ void board_addTile( char *tileName, const money cost,
 
 void board_playTurn() {
     struct Player currentPlayer = board.players[board.currentPlayerIndex];
+    printf( "Current Player: %i\n", board.currentPlayerIndex );
+    printf( "Current Tile: %s (%i)\n", board.tiles[currentPlayer.boardIndex].name, currentPlayer.boardIndex );
     for ( int i = 0; i < 3; ++i ) {
         uint8_t spacesToGo = board.goIndex > currentPlayer.boardIndex ?
                              board.goIndex - currentPlayer.boardIndex :
                              board.numTiles - currentPlayer.boardIndex + board.goIndex;
+        printf( "Spaces to GO: %u\n", spacesToGo );
         uint8_t roll1 = rollDie( 6 ); 
         uint8_t roll2 = rollDie( 6 );
+        printf( "Rolls: %u & %u\n", roll1, roll2 );
         if ( i == 2 && roll1 == roll2 ) {
+            printf( "Too many doubles, to jail!\n" );
             currentPlayer.boardIndex = board.jailIndex;
             currentPlayer.inJail = true;
             break;
@@ -106,7 +111,9 @@ void board_playTurn() {
         //move player
         currentPlayer.boardIndex += roll1 + roll2;
         currentPlayer.boardIndex %= board.numTiles;
+        printf( "New Tile: %s (%i)\n", board.tiles[currentPlayer.boardIndex].name, currentPlayer.boardIndex );
         if ( roll1 + roll2 >= spacesToGo ) {
+            printf( "Passed GO!\n" );
             currentPlayer.cash += board.passGoAmount;
         }
 
@@ -148,4 +155,7 @@ void board_playTurn() {
             break;
         }
     }
+    board.players[board.currentPlayerIndex] = currentPlayer;
+    board.currentPlayerIndex++;
+    board.currentPlayerIndex %= board.numPlayers;
 }
