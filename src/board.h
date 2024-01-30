@@ -9,7 +9,7 @@
 
 
 void board_initialize( const uint8_t numPlayers );
-void board_addTile( char *tileName, const money cost, const money mortgage,
+void board_addTile( char *tileName, const money startingRent, const money mortgage,
                     const enum PropType type, const uint8_t group );
 void board_playTurn();
 

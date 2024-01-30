@@ -65,7 +65,7 @@ void board_initialize( const uint8_t numPlayers ) {
     board.passGoAmount = 200;
 }
 void board_addTile( char *tileName, const money cost,
-                    const money mortgage, const enum PropType type,
+                    const money startingRent, const enum PropType type,
                     const uint8_t group ) {
     assert( initialized && board.numTiles < 255 );
     assert( !( board.goAdded && type == GO ) );
@@ -82,13 +82,15 @@ void board_addTile( char *tileName, const money cost,
     board.tiles[board.numTiles++] = ( struct Tile ) {
                                                         .name = tileName,
                                                         .cost = cost,
-                                                        .mortgageValue = mortgage,
+                                                        .mortgageValue = cost / 2,
                                                         .type = type,
                                                         .group = group,
                                                         .isMortgaged = false,
                                                         .isOwned = false,
                                                         .ownerIndex = 0,
-                                                        .buildingCost = 0
+                                                        .buildingCost = 0,
+                                                        .startingRent = startingRent,
+                                                        .currentRent = startingRent,
                                                       };
 }
 
