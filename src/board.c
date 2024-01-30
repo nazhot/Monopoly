@@ -59,6 +59,7 @@ void board_initialize( const uint8_t numPlayers ) {
                                                 .boardIndex = 0,
                                                 .inJail = false,
                                                 .playerIndex = i,
+                                                .stillPlaying = true,
                                               };
     }
     board.numPlayers = numPlayers;
@@ -96,6 +97,11 @@ void board_addTile( char *tileName, const money cost,
 
 void board_playTurn() {
     struct Player *currentPlayer = &board.players[board.currentPlayerIndex];
+    if ( !currentPlayer->stillPlaying ) {
+        board.currentPlayerIndex++;
+        board.currentPlayerIndex %= board.numPlayers;
+        return;
+    }
     printf( "Current Player: %i\n", board.currentPlayerIndex );
     printf( "Current Tile: %s (%i)\n", board.tiles[currentPlayer->boardIndex].name, currentPlayer->boardIndex );
     for ( int i = 0; i < 3; ++i ) {

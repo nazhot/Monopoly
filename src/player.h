@@ -11,6 +11,7 @@ struct Player {
     uint8_t playerIndex;
     bool inJail;
     uint8_t turnsInJail;
+    bool stillPlaying;
 };
 
 bool player_buyProperty( struct Player *player, struct Tile *property ); 
