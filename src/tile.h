@@ -12,7 +12,7 @@ enum PropType {
     RAILROAD,
     FREE_PARKING,
     JAIL,
-    GO_TO_JAIL,
+    SEND_TO_JAIL,
     COMMUNITY_CHEST,
     CHANCE,
     GO,

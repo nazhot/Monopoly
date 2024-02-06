@@ -65,6 +65,7 @@ void board_initialize( const uint8_t numPlayers ) {
     board.numPlayers = numPlayers;
     board.passGoAmount = 200;
 }
+
 void board_addTile( char *tileName, const money cost,
                     const money startingRent, const enum PropType type,
                     const uint8_t group ) {
