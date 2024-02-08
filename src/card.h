@@ -4,8 +4,10 @@
 
 #include "tile.h"
 enum CardAction {
-    ADVANCE_TO,
-    ADVANCE_TO_PAY_DOUBLE,
+    ADVANCE_TO_NAME,
+    ADVANCE_TO_TYPE,
+    ADVANCE_TO_NAME_PAY_DOUBLE,
+    ADVANCE_TO_TYPE_PAY_DOUBLE,
     EARN,
     EARN_FROM_PLAYERS,
     GET_OUT_OF_JAIL,
@@ -23,9 +25,10 @@ union CardParameter {
 };
 
 struct Card {
-   enum CardAction action;
-   
-
+   enum CardAction action1;
+   union CardParameter parameter1;
+   enum CardAction action2;
+   union CardParameter parameter2;
 };
 
 #endif
