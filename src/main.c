@@ -74,6 +74,33 @@ int main( int argc, char **argv ) {
                    ( union CardParameter ) ( money ) 150, NO_ACTION, noParam );
 
 
+    board_addCard( "Advance to Go (Collect $200)", CARD_COMMUNITY_CHEST,
+                   ADVANCE_TO_TYPE, ( union CardParameter ) ( enum PropType ) GO,
+                   NO_ACTION, noParam );
+    board_addCard( "Bank error in your favor. Collect $200", CARD_CHANCE, EARN,
+                   ( union CardParameter ) ( money ) 200, NO_ACTION, noParam );
+    board_addCard( "Doctor's fee. Pay $50", CARD_CHANCE, PAY,
+                   ( union CardParameter ) ( money ) 50, NO_ACTION, noParam );
+    board_addCard( "From sale of stock you get $50", CARD_CHANCE, EARN,
+                   ( union CardParameter ) ( money ) 50, NO_ACTION, noParam );
+    board_addCard( "Get Out of Jail Free", CARD_CHANCE, GET_OUT_OF_JAIL,
+                    noParam, NO_ACTION, noParam );
+    board_addCard( "Go to Jail. Go directly to Jail, do not pass Go, do not "
+                   "collect $200", CARD_CHANCE, GO_TO_JAIL, noParam, NO_ACTION,
+                   noParam );
+    board_addCard( "Holiday fund matures. Receive $100", CARD_CHANCE, EARN,
+                   ( union CardParameter ) ( money ) 100, NO_ACTION, noParam );
+    board_addCard( "Income tax refund. Collect $20", CARD_CHANCE, EARN,
+                   ( union CardParameter ) ( money ) 20, NO_ACTION, noParam );
+    board_addCard( "It is your birthday. Collect $10 from every player", 
+                   CARD_CHANCE, EARN_FROM_PLAYERS,
+                   ( union CardParameter ) ( money ) 10, NO_ACTION, noParam );
+    board_addCard( "Life insurance matures. Collect $100", CARD_CHANCE, EARN,
+                   ( union CardParameter ) ( money ) 100, NO_ACTION, noParam );
+    board_addCard( "Pay hospital fees of $100", CARD_CHANCE, PAY,
+                   ( union CardParameter ) ( money ) 100, NO_ACTION, noParam );
+    board_addCard( "Pay school fees of $50", CARD_CHANCE, PAY,
+                   ( union CardParameter ) ( money ) 50, NO_ACTION, noParam );
 
     for ( int i = 0; i < 10; ++i ) {
         board_playTurn();
