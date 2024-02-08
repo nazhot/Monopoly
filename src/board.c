@@ -14,7 +14,7 @@ struct Board {
     uint8_t numTiles;
     uint8_t currentPlayerIndex;
     struct Card cards[NUM_TYPES_OF_CARD][256];
-    struct Card numCards[NUM_TYPES_OF_CARD];
+    uint8_t numCards[NUM_TYPES_OF_CARD];
     uint8_t currentCardIndex[NUM_TYPES_OF_CARD];
     uint8_t goIndex;
     bool goAdded;
@@ -102,10 +102,18 @@ void board_addTile( char *tileName, const money cost,
                                                       };
 }
 
-void board_addCard( char *title, enum CardAction action1, 
+void board_addCard( char *title, enum CardType type, enum CardAction action1, 
                     union CardParameter parameter1,
                     enum CardAction action2,
                     union CardParameter parameter2 ) {
+    assert( initialized && board.numCards[type] < 255 );
+    board.cards[type][board.numCards[type]++] = ( struct Card ) 
+                                                { .title = title, 
+                                                  .action1 = action1, 
+                                                  .parameter1 = parameter1,
+                                                  .action2 = action2,
+                                                  .parameter2 = parameter2
+                                                };
 }
 
 void board_playTurn() {
