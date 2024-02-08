@@ -14,6 +14,17 @@ bool player_buyProperty( struct Player *player, struct Tile *property ) {
     property->isOwned = true;
     return true;
 }
+
 bool player_mortgageProperty( struct Player *player, struct Tile *property ) {
     return false;
+}
+
+bool player_payOtherPlayer( struct Player *payPlayer, struct Player *recPlayer,
+                            money amount ) {
+    if ( payPlayer->cash < amount ) {
+        return false;
+    }
+    payPlayer->cash -= amount;
+    recPlayer->cash += amount;
+    return true;
 }

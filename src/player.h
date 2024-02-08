@@ -16,5 +16,7 @@ struct Player {
 
 bool player_buyProperty( struct Player *player, struct Tile *property ); 
 bool player_mortgageProperty( struct Player *player, struct Tile *property );
+bool player_payOtherPlayer( struct Player *payPlayer, struct Player *recPlayer,
+                            money amount );
 
 #endif

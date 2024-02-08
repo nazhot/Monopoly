@@ -28,6 +28,14 @@ struct Board {
 static struct Board board;
 bool initialized = false;
 
+static void board_sendCurrentPlayerToJail() {
+    struct Player *currentPlayer = &board.players[board.currentPlayerIndex];
+    currentPlayer->inJail = true;
+    currentPlayer->boardIndex = board.jailIndex;
+    currentPlayer->turnsInJail = 0;
+}
+
+
 //Code from https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c
 static uint8_t rollDie( const uint8_t die ) {
     if ((die - 1) == RAND_MAX) {
@@ -162,6 +170,9 @@ void board_playTurn() {
             case CHANCE:
                 break;
             case COMMUNITY_CHEST:
+                break;
+            case SEND_TO_JAIL:
+                board_sendCurrentPlayerToJail();
                 break;
             default:
                 break;
