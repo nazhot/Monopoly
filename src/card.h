@@ -4,6 +4,7 @@
 
 #include "tile.h"
 enum CardAction {
+    NO_ACTION,
     ADVANCE_TO_NAME,
     ADVANCE_TO_TYPE,
     ADVANCE_TO_NAME_PAY_DOUBLE,
@@ -21,14 +22,20 @@ enum CardAction {
 union CardParameter {
     money money;
     char *locationName;
-    PropType propertyType;
+    enum PropType propertyType;
 };
 
 struct Card {
-   enum CardAction action1;
-   union CardParameter parameter1;
-   enum CardAction action2;
-   union CardParameter parameter2;
+    char *title;
+    enum CardAction action1;
+    union CardParameter parameter1;
+    enum CardAction action2;
+    union CardParameter parameter2;
 };
+
+struct Card* card_createCard( char *title, enum CardAction action1, 
+                              union CardParameter parameter1,
+                              enum CardAction action2,
+                              union CardParameter parameter2 );
 
 #endif
