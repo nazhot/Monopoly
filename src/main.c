@@ -1,11 +1,10 @@
 #include "board.h"
+#include "card.h"
 #include "tile.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main( int argc, char **argv ) {
-    printf( "Working\n" );
-
     board_initialize( 4 );
     board_addTile( "GO", 0, 0, GO, 99 );
     board_addTile( "Mediterranean Avenue", 60, 2, PROPERTY, 0);
@@ -17,6 +16,10 @@ int main( int argc, char **argv ) {
     board_addTile( "Vermont Avenue", 100, 6, PROPERTY, 2);
     board_addTile( "Conneticut Avenue", 120, 8, PROPERTY, 2);
     board_addTile( "Jail", 0, 0, JAIL, 102 );
+
+    board_addCard( "Advance to Boardwalk", CARD_CHANCE, ADVANCE_TO_NAME,
+                   ( union CardParameter ) "Boardwalk", NO_ACTION,
+                   ( union CardParameter ) ( money ) 0 );
 
 
     for ( int i = 0; i < 10; ++i ) {
