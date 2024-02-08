@@ -53,6 +53,25 @@ int main( int argc, char **argv ) {
                    ( union CardParameter ) ( money ) 50, NO_ACTION, noParam );
     board_addCard( "Get Out of Jail Free", CARD_CHANCE, GET_OUT_OF_JAIL,
                     noParam, NO_ACTION, noParam );
+    board_addCard( "Go Back 3 Spaces", CARD_CHANCE, GO_BACK, 
+                   ( union CardParameter ) ( uint8_t ) 3, NO_ACTION, noParam );
+    board_addCard( "Go to Jail. Go directly to Jail, do not pass Go, do not "
+                   "collect $200", CARD_CHANCE, GO_TO_JAIL, noParam, NO_ACTION,
+                   noParam );
+    board_addCard( "Make general repairs on all your property. For each house "
+                   "pay $25. For each hotel pay $100", CARD_CHANCE, REPAIRS,
+                   ( union CardParameter ) ( money ) 25, REPAIRS,
+                   ( union CardParameter ) ( money ) 100 );
+    board_addCard( "Speeding fine $15", CARD_CHANCE, PAY,
+                   ( union CardParameter ) ( money ) 15, NO_ACTION, noParam );
+    board_addCard( "Take a trip to Reading Rainbow. If you pass Go, collect "
+                   "$200", CARD_CHANCE, ADVANCE_TO_NAME,
+                   ( union CardParameter ) "Reading Rainbow", NO_ACTION, noParam );
+    board_addCard( "You have been elected Chairman of the Board. Pay each player "
+                   "$50", CARD_CHANCE, PAY_EACH_PLAYER,
+                   ( union CardParameter ) ( money ) 50, NO_ACTION, noParam );
+    board_addCard( "Your building loan matures. Collect $150", CARD_CHANCE, EARN, 
+                   ( union CardParameter ) ( money ) 150, NO_ACTION, noParam );
 
 
 

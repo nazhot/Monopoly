@@ -22,6 +22,7 @@ enum CardAction {
 
 union CardParameter {
     money money;
+    uint8_t spaces;
     char *locationName;
     enum PropType propertyType;
 };
