@@ -114,7 +114,6 @@ void board_addCard( char *title, enum CardType type, enum CardAction action1,
                                                   .action2 = action2,
                                                   .parameter2 = parameter2
                                                 };
-    printf( "%s\n", board.cards[type][board.numCards[type] - 1].parameter1.locationName );
 }
 
 void board_playTurn() {
