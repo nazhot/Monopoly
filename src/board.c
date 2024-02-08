@@ -1,4 +1,5 @@
 #include "board.h"
+#include "card.h"
 #include "player.h"
 #include "tile.h"
 #include <assert.h>
@@ -12,12 +13,9 @@ struct Board {
     struct Tile tiles[256];
     uint8_t numTiles;
     uint8_t currentPlayerIndex;
-    struct Card chanceCards[256];
-    uint8_t numChanceCards;
-    uint8_t currentChanceCardIndex;
-    struct Card communityChestCards[256];
-    uint8_t numCommunityChestCards;
-    uint8_t currentCommunityChestCardIndex;
+    struct Card cards[NUM_TYPES_OF_CARD][256];
+    struct Card numCards[NUM_TYPES_OF_CARD];
+    uint8_t currentCardIndex[NUM_TYPES_OF_CARD];
     uint8_t goIndex;
     bool goAdded;
     uint8_t jailIndex;
@@ -102,6 +100,12 @@ void board_addTile( char *tileName, const money cost,
                                                         .startingRent = startingRent,
                                                         .currentRent = startingRent,
                                                       };
+}
+
+void board_addCard( char *title, enum CardAction action1, 
+                    union CardParameter parameter1,
+                    enum CardAction action2,
+                    union CardParameter parameter2 ) {
 }
 
 void board_playTurn() {

@@ -1,5 +1,6 @@
 #ifndef CARD_H
 #define CARD_H
+#define NUM_TYPES_OF_CARD 2
 
 
 #include "tile.h"
@@ -23,6 +24,11 @@ union CardParameter {
     money money;
     char *locationName;
     enum PropType propertyType;
+};
+
+enum CardType {
+    CARD_CHANCE,
+    CARD_COMMUNITY_CHEST
 };
 
 struct Card {
