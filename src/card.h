@@ -33,7 +33,7 @@ struct Card {
     union CardParameter parameter2;
 };
 
-struct Card* card_createCard( char *title, enum CardAction action1, 
+struct Card card_createCard( char *title, enum CardAction action1, 
                               union CardParameter parameter1,
                               enum CardAction action2,
                               union CardParameter parameter2 );
