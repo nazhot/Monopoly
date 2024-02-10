@@ -33,6 +33,13 @@ static void board_sendCurrentPlayerToJail() {
     currentPlayer->turnsInJail = 0;
 }
 
+static void board_currentPlayerDrawCard( enum CardType type ) {
+    struct Card card = board.cards[type][board.currentCardIndex[type]];
+
+    board.currentCardIndex[type]++;
+    board.currentCardIndex[type] %= board.numCards[type];
+}
+
 
 //Code from https://stackoverflow.com/questions/822323/how-to-generate-a-random-int-in-c
 static uint8_t rollDie( const uint8_t die ) {
