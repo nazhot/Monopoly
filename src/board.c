@@ -33,8 +33,40 @@ static void board_sendCurrentPlayerToJail() {
     currentPlayer->turnsInJail = 0;
 }
 
-static void board_currentPlayerDrawCard( enum CardType type ) {
+static void board_activateCard( enum CardAction action, union CardParameter param ) {
+    switch ( action ) {
+        case NO_ACTION:
+            break;
+        case ADVANCE_TO_NAME:
+            break;
+        case ADVANCE_TO_TYPE:
+            break;
+        case ADVANCE_TO_NAME_PAY_DOUBLE:
+            break;
+        case ADVANCE_TO_TYPE_PAY_DOUBLE:
+            break;
+        case EARN:
+            break;
+        case EARN_FROM_PLAYERS:
+            break;
+        case GET_OUT_OF_JAIL:
+            break;
+        case GO_BACK:
+            break;
+        case GO_TO_JAIL:
+            break;
+        case REPAIRS:
+            break;
+        case PAY:
+            break;
+        case PAY_EACH_PLAYER:
+            break;
+    }
+}
+
+static void board_drawCard( enum CardType type ) {
     struct Card card = board.cards[type][board.currentCardIndex[type]];
+
 
     board.currentCardIndex[type]++;
     board.currentCardIndex[type] %= board.numCards[type];
